@@ -15,11 +15,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // 1. Llamamos a los seeders manuales
+        $this->call([
+            UsuarioSeeder::class,
+            DietaSeeder::class,
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // 2. Creamos 5 Administradores aleatorios
+        User::factory(5)->create([
+            'rol' => 'Administrador',
+        ]);
+
+        // 3. Creamos 50 Pacientes aleatorios
+        User::factory(50)->create([
+            'rol' => 'Paciente',
         ]);
     }
 }
